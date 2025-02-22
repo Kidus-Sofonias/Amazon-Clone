@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import { IoMenuSharp } from "react-icons/io5";
 import styles from "./Header.module.css";
 
@@ -20,4 +20,4 @@ function lowerHeader() {
   );
 }
 
-export default lowerHeader
+export default lowerHeader;

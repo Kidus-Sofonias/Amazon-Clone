@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Header.module.css";
-import LowerHeader from "./lowerHeader"
+import LowerHeader from "./lowerHeader";
 import "bootstrap/dist/css/bootstrap.min.css";
 import logo from "../../assets/Images/logo.png";
 import { SlLocationPin } from "react-icons/sl";
@@ -56,13 +56,13 @@ function Header() {
               </div>
             </a>
             <a href="" className={styles.cart}>
-              <BiCart size={35}/>
+              <BiCart size={35} />
               <span>0</span>
             </a>
           </div>
         </div>
       </div>
-        <LowerHeader/>  
+      <LowerHeader />
     </nav>
   );
 }
