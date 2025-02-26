@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./Header.module.css";
 import LowerHeader from "./lowerHeader";
 import "bootstrap/dist/css/bootstrap.min.css";
-import logo from "../../assets/Images/logo.png";
+import logo from "../../assets/images/logo.png";
 import { SlLocationPin } from "react-icons/sl";
 import { BsSearch } from "react-icons/bs";
 import { BiCart } from "react-icons/bi";

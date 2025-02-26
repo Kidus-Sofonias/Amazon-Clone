@@ -122,6 +122,7 @@ nav p {
   display: flex;
   list-style: none;
   gap: 5px;
+  margin-bottom: 0;
 }
 .lower__container ul li {
   padding: 8px;
