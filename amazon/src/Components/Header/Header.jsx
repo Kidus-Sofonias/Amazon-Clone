@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styles from "./Header.module.css";
 import LowerHeader from "./lowerHeader";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -12,9 +13,9 @@ function Header() {
     <nav>
       <div className={styles.header__container}>
         <div className={styles.logo__container}>
-          <a href="#">
+          <Link to="/">
             <img src={logo} alt="" />
-          </a>
+          </Link>
         </div>
         <div className={styles.delivery}>
           <span>
@@ -34,7 +35,7 @@ function Header() {
         </div>
         <div>
           <div className={styles.order__container}>
-            <a href="" className={styles.language}>
+            <Link to="" className={styles.language}>
               <img
                 src="https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg"
                 alt=""
@@ -42,23 +43,23 @@ function Header() {
               <section>
                 <option value="">EN</option>
               </section>
-            </a>
-            <a href="">
+            </Link>
+            <Link to="/signup">
               <div>
                 <p>Sign In</p>
                 <span>Account & Lists</span>
               </div>
-            </a>
-            <a href="">
+            </Link>
+            <Link to="/orders">
               <div>
                 <p>Returns</p>
                 <span>& Orders</span>
               </div>
-            </a>
-            <a href="" className={styles.cart}>
+            </Link>
+            <Link to="/cart" className={styles.cart}>
               <BiCart size={35} />
               <span>0</span>
-            </a>
+            </Link>
           </div>
         </div>
       </div>
