@@ -9,29 +9,36 @@ import ProductCard from "/src/Components/Product/ProductCard.jsx";
 function Results() {
   const [results, setResults] = React.useState([]);
   const { categoryName } = useParams();
+  const [isLoading, setLoading] = React.useState(false);
   useEffect(() => {
     axios
       .get(`${productUrl}products/category/${categoryName}`)
       .then((res) => {
         setResults(res.data);
+        isLoading(false);
       })
       .catch((err) => {
         console.log(err);
+        isLoading(false);
       });
   }, [categoryName]);
 
   return (
     <Layout>
-      <section>
-        <h1 style={{ padding: "30px" }}>Results</h1>
-        <p style={{ padding: "30px" }}>Category / {categoryName}</p>
-        <hr />
-        <div className={styles.productContainer}>
-          {results.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
-      </section>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <section>
+          <h1 style={{ padding: "30px" }}>Results</h1>
+          <p style={{ padding: "30px" }}>Category / {categoryName}</p>
+          <hr />
+          <div className={styles.productContainer}>
+            {results.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
+        </section>
+      )}
     </Layout>
   );
 }

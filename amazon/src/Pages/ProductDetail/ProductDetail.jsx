@@ -5,31 +5,35 @@ import { productUrl } from '../../Api/endPoint'
 import ProductCard from '../../Components/Product/ProductCard'
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import Loader from '../../Components/Loader/Loader';
 
 function ProductDetail() {
   const { productId } = useParams();
-  const [product, setProduct] = useState(null); // Initialize as null
+  const [product, setProduct] = useState(false); // Initialize as null
+  const [isLoading, setLoading] = useState(false); // Initialize as false
 
   useEffect(() => {
     const url = `${productUrl}/products/${productId}`;
     console.log("Requesting URL:", url); // Debugging line
-
+    setLoading(true); // Set loading state
     axios.get(url)
       .then((res) => {
         console.log("Fetched product data:", res.data); // Debugging line
         setProduct(res.data);
+        setLoading(false); // Set loading state to false
       }).catch((err) => {
         console.log("Product Error:", err); // Improved error logging
+        setLoading(false); // Set loading state to false
       });
   }, [productId]); // Add productId as a dependency
 
-  if (!product) {
-    return <div>Loading...</div>; // Add a loading state
-  }
-
   return (
     <Layout>
-        <ProductCard data={product} />
+        {isLoading? (
+          <Loader />
+        ) : (
+          <ProductCard data={product} flex={true} renderDesc={true}/>
+        )}
     </Layout>
   );
 }
