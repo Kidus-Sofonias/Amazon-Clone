@@ -20,6 +20,11 @@ function ProductCard({ data, flex, renderDesc, renderAdd }) {
     });
   }
 
+  const truncateDescription = (desc, limit) => {
+    if (!desc) return "";
+    return desc.split(" ").slice(0, limit).join(" ") + (desc.split(" ").length > limit ? "..." : "");
+  };
+
   return (
     <div
       className={`${styles.card__container} ${
@@ -30,9 +35,9 @@ function ProductCard({ data, flex, renderDesc, renderAdd }) {
         <img src={image} alt={title} />
       </Link>
       <div>
-        <h3>{title}</h3>
+        <h3>{truncateDescription(title, 7)}</h3>
         {
-          renderDesc && <div style={{ maxWidth: "60%" }}>{description}</div> // Add conditional rendering for description
+          renderDesc && <div style={{ maxWidth: "60%" }}>{description}</div> // Add conditional rendering for truncated description
         }
         <div className={styles.rating}>
           <Rating value={rating?.rate || 0} precision={0.1} />{" "}

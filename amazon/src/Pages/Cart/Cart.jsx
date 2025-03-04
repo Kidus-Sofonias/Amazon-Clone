@@ -28,8 +28,7 @@ function Cart() {
     <Layout>
       <section className={styles.container}>
         <div className={styles.cart__container}>
-          <h2>Hello</h2>
-          <h3>Your Cart</h3>
+          <h2>Your Cart</h2>
           <hr />
           {basket?.length == 0 ? (
             <p>Your cart is empty</p>
