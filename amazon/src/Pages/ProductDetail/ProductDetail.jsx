@@ -29,11 +29,16 @@ function ProductDetail() {
 
   return (
     <Layout>
-        {isLoading? (
-          <Loader />
-        ) : (
-          <ProductCard data={product} flex={true} renderDesc={true}/>
-        )}
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <ProductCard
+          data={product}
+          flex={true}
+          renderDesc={true}
+          renderAdd={true}
+        />
+      )}
     </Layout>
   );
 }

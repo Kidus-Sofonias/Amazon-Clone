@@ -13,10 +13,12 @@ import { useContext } from "react";
 function Header() {
 
   const [{basket}, dipatch]=useContext(DataContext);
-
+  const totalItem = basket?.reduce((amount, item)=>{
+    return item.amount + amount
+  }, 0)
 
   return (
-    <nav>
+    <nav className={styles.fixed}>
       <div className={styles.header__container}>
         <div className={styles.logo__container}>
           <Link to="/">
@@ -64,7 +66,7 @@ function Header() {
             </Link>
             <Link to="/cart" className={styles.cart}>
               <BiCart size={35} />
-              <span>{basket.length}</span>
+              <span>{totalItem}</span>
             </Link>
           </div>
         </div>

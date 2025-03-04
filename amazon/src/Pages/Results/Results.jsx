@@ -3,7 +3,7 @@ import styles from "./Results.module.css";
 import Layout from "/src/Components/Layout/Layout.jsx";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { productUrl } from "/src/Api/endPoint.js";
+import { productUrl } from "../../Api/endPoint";
 import ProductCard from "/src/Components/Product/ProductCard.jsx";
 
 function Results() {
@@ -15,11 +15,11 @@ function Results() {
       .get(`${productUrl}products/category/${categoryName}`)
       .then((res) => {
         setResults(res.data);
-        isLoading(false);
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
-        isLoading(false);
+        setLoading(false);
       });
   }, [categoryName]);
 
@@ -34,7 +34,11 @@ function Results() {
           <hr />
           <div className={styles.productContainer}>
             {results.map((product) => (
-              <ProductCard key={product.id} product={product} />
+              <ProductCard 
+              key={product.id} 
+              data={product} 
+              renderDesc={false}
+              renderAdd={true}/>
             ))}
           </div>
         </section>

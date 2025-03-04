@@ -26,7 +26,7 @@ function Product() {
       ) : (
         <section className={styles.product__container}>
           {product.map((item) => (
-            <ProductCard key={item.id} data={item} />
+            <ProductCard key={item.id} data={item} renderAdd={true} />
           ))}
         </section>
       )}

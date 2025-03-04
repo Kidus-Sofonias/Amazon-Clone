@@ -6,7 +6,7 @@ import styles from './Product.module.css'
 import {Type} from '../../Utility/action.type'
 import { DataContext } from '../DataProvider/DataProvider'
 
-function ProductCard({ data, flex, renderDesc }) {
+function ProductCard({ data, flex, renderDesc, renderAdd }) {
   const { image, title, id, rating, price, description } = data || {}; // Add default empty object to avoid destructuring errors
   
   const [state, dispatch] = useContext(DataContext)
@@ -21,14 +21,18 @@ function ProductCard({ data, flex, renderDesc }) {
   }
 
   return (
-    <div className={`${styles.card__container} ${flex ? styles.product__flexed : ""}`}>
+    <div
+      className={`${styles.card__container} ${
+        flex ? styles.product__flexed : ""
+      }`}
+    >
       <Link to={`/products/${id}`} className={styles.card__link}>
         <img src={image} alt={title} />
       </Link>
       <div>
         <h3>{title}</h3>
         {
-          renderDesc && <div style={{maxWidth:"60%"}}>{description}</div> // Add conditional rendering for description
+          renderDesc && <div style={{ maxWidth: "60%" }}>{description}</div> // Add conditional rendering for description
         }
         <div className={styles.rating}>
           <Rating value={rating?.rate || 0} precision={0.1} />{" "}
@@ -38,7 +42,11 @@ function ProductCard({ data, flex, renderDesc }) {
         <div>
           <CurrencyFormat amount={price} />
         </div>
-        <button className={styles.button} onClick={addToCart}>Add to Cart</button>
+        {renderAdd && (
+          <button className={styles.button} onClick={addToCart}>
+            Add to Cart
+          </button>
+        )}
       </div>
     </div>
   );
