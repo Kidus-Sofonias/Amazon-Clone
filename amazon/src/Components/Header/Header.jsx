@@ -7,8 +7,14 @@ import logo from "../../assets/images/logo.png";
 import { SlLocationPin } from "react-icons/sl";
 import { BsSearch } from "react-icons/bs";
 import { BiCart } from "react-icons/bi";
+import { DataContext } from "../DataProvider/DataProvider";
+import { useContext } from "react";
 
 function Header() {
+
+  const [{basket}, dipatch]=useContext(DataContext);
+
+
   return (
     <nav>
       <div className={styles.header__container}>
@@ -58,7 +64,7 @@ function Header() {
             </Link>
             <Link to="/cart" className={styles.cart}>
               <BiCart size={35} />
-              <span>0</span>
+              <span>{basket.length}</span>
             </Link>
           </div>
         </div>
