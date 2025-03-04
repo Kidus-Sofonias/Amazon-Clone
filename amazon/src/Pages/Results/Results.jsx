@@ -12,7 +12,7 @@ function Results() {
   const [isLoading, setLoading] = React.useState(false);
   useEffect(() => {
     axios
-      .get(`${productUrl}products/category/${categoryName}`)
+      .get(`${productUrl}/products/category/${categoryName}`)
       .then((res) => {
         setResults(res.data);
         setLoading(false);
@@ -32,13 +32,14 @@ function Results() {
           <h1 style={{ padding: "30px" }}>Results</h1>
           <p style={{ padding: "30px" }}>Category / {categoryName}</p>
           <hr />
-          <div className={styles.productContainer}>
+          <div className={styles.products_container}>
             {results.map((product) => (
-              <ProductCard 
-              key={product.id} 
-              data={product} 
-              renderDesc={false}
-              renderAdd={true}/>
+              <ProductCard
+                key={product.id}
+                data={product}
+                renderDesc={false}
+                renderAdd={true}
+              />
             ))}
           </div>
         </section>
