@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Header.module.css";
 import LowerHeader from "./lowerHeader";
@@ -8,21 +8,20 @@ import { SlLocationPin } from "react-icons/sl";
 import { BsSearch } from "react-icons/bs";
 import { BiCart } from "react-icons/bi";
 import { DataContext } from "../DataProvider/DataProvider";
-import { useContext } from "react";
+import { auth } from "../../Utility/firebase";
 
 function Header() {
+  const [{ user, basket }] = useContext(DataContext); // Ensure correct destructuring
 
-  const [{basket}, dipatch]=useContext(DataContext);
-  const totalItem = basket?.reduce((amount, item)=>{
-    return item.amount + amount
-  }, 0)
+  const totalItem =
+    basket?.reduce((amount, item) => item.amount + amount, 0) || 0;
 
   return (
     <nav className={styles.fixed}>
       <div className={styles.header__container}>
         <div className={styles.logo__container}>
           <Link to="/">
-            <img src={logo} alt="" />
+            <img src={logo} alt="Logo" />
           </Link>
         </div>
         <div className={styles.delivery}>
@@ -35,10 +34,10 @@ function Header() {
           </div>
         </div>
         <div className={styles.search}>
-          <select name="" id="">
+          <select>
             <option value="">All</option>
           </select>
-          <input type="text" name="" id="" placeholder="Search Products" />
+          <input type="text" placeholder="Search Products" />
           <BsSearch size={45} />
         </div>
         <div>
@@ -46,16 +45,25 @@ function Header() {
             <Link to="" className={styles.language}>
               <img
                 src="https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg"
-                alt=""
+                alt="US Flag"
               />
               <section>
                 <option value="">EN</option>
               </section>
             </Link>
-            <Link to="/signup">
+            <Link to={!user && "/auth"}>
               <div>
-                <p>Sign In</p>
-                <span>Account & Lists</span>
+                {user ? (
+                  <>
+                    <p>Hello, {user?.email?.split("@")[0]}</p>
+                    <span onClick={()=>auth.signOut()}>Sign Out</span>
+                  </>
+                ) : (
+                  <>
+                    <p>Hello, Sign In</p>
+                    <span>Account & Lists</span>
+                  </>
+                )}
               </div>
             </Link>
             <Link to="/orders">

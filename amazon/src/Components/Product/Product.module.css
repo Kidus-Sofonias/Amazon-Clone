@@ -30,10 +30,7 @@
     height: 200px;
     object-fit: contain;
 }
-:root{
-  --primary-color: #febd69;
-  --primary-shade: #d49644;
-}
+
 
 .button {
     display: none;

@@ -7,7 +7,7 @@ function Category() {
   return (
     <div className={styles.category__container}>
       {categoryInfo.map((item) => (
-        <CategoryCard data={item} />
+        <CategoryCard key={item.id} data={item} />
       ))}
     </div>
   );
