@@ -20,7 +20,7 @@ app.get("/", (req, res) => {
 });
 
 app.post("/payment/create", async (req, res) => {
-  const total = parseInt(req.query.total);
+  const total = parseInt(req.query.total, 10);
 
   // Check if the total amount is at least 50 cents
   if (total < 50) {
